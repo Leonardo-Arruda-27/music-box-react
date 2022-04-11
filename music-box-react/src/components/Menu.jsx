@@ -7,9 +7,9 @@ function Menu() {
     return (
         <>
             <nav>
-                <div class="container">
-                    <img src={ImagemVerde} alt="Logo" class="logo" />
-                    <img src={Imagem} alt="Avatar" class="avatar" />
+                <div className="container">
+                    <img src={ImagemVerde} alt="Logo" className="logo" />
+                    <img src={Imagem} alt="Avatar" className="avatar" />
                 </div>
             </nav>
         </>

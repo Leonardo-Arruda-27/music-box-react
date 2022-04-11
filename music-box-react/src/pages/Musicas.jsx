@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemMusica from '../components/ItemMusica';
 import Menu from "../components/Menu";
+import api from "../api"
 
 function Musicas() {
+
+    const [musicas, setMusicas] = useState([]);
+
+
+    useEffect(() => {
+
+        api.get().then((resposta) => {
+            setMusicas(resposta.data);
+
+        }).catch((erro) => {
+            console.log(erro);
+        })
+
+    }, [])
+
+
+
     return (
         <>
             <Menu />
@@ -15,23 +33,20 @@ function Musicas() {
             <div className="container">
                 <div className="music-boxes">
 
-                    <ItemMusica
-                        musica="Vampiro"
-                        artista="Matue, Teto, Will"
-                        genero="Trap"
-                        ano={2022}
-                        id="1"
-                    />
+                    {
+                        musicas.map(musica => (
 
-                    <ItemMusica
-                        musica="Sodoma & Gomorra"
-                        artista="Borges ft BK"
-                        genero="Trap"
-                        ano={2021}
-                        id="2"
-                    />
+                            <ItemMusica
+                                musica={musica.musica}
+                                artista={musica.artista}
+                                genero={musica.categoria}
+                                ano={musica.ano}
+                                id={musica.id}
+                                key={musica.id}
+                            />
 
-
+                        ))
+                    }
 
                 </div>
             </div>
